@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------
-# Copyright (c) 2023 by Enclustra GmbH, Switzerland.
+# Copyright (c) 2024 by Enclustra GmbH, Switzerland.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this hardware, software, firmware, and associated documentation files (the
@@ -88,20 +88,26 @@ set_property -dict {PACKAGE_PIN AC4   IOSTANDARD LVCMOS18  } [get_ports {IO1_CLK
 set_property -dict {PACKAGE_PIN AA11  IOSTANDARD LVCMOS18  } [get_ports {BTN1_N}]
 
 # Optional reference oscillator
-set_property -dict {PACKAGE_PIN D14   IOSTANDARD LVCMOS18  } [get_ports {CLK_REF_N}]
-set_property -dict {PACKAGE_PIN D15   IOSTANDARD LVCMOS18  } [get_ports {CLK_REF_P}]
+set_property -dict {PACKAGE_PIN D14   IOSTANDARD DIFF_SSTL18_I} [get_ports {CLK_REF_N}]
+set_property -dict {PACKAGE_PIN D15   IOSTANDARD DIFF_SSTL18_I} [get_ports {CLK_REF_P}]
+
+# Clock Generator CLK1
+if {$PL_MGT == "B224"} {
+  # set_property PACKAGE_PIN Y5    [get_ports {CLK_REF0_N}] # GTH
+  # set_property PACKAGE_PIN Y6    [get_ports {CLK_REF0_P}] # GTH
+}
 
 # Clock Generator CLK2
-set_property -dict {PACKAGE_PIN E15   IOSTANDARD LVCMOS18  } [get_ports {CLK_REF1_N}]
-set_property -dict {PACKAGE_PIN F15   IOSTANDARD LVCMOS18  } [get_ports {CLK_REF1_P}]
+set_property -dict {PACKAGE_PIN E15   IOSTANDARD DIFF_SSTL18_I} [get_ports {CLK_REF1_N}]
+set_property -dict {PACKAGE_PIN F15   IOSTANDARD DIFF_SSTL18_I} [get_ports {CLK_REF1_P}]
 
 # Clock Generator CLK3
-set_property -dict {PACKAGE_PIN E13   IOSTANDARD LVCMOS18  } [get_ports {CLK_REF2_N}]
-set_property -dict {PACKAGE_PIN E14   IOSTANDARD LVCMOS18  } [get_ports {CLK_REF2_P}]
+set_property -dict {PACKAGE_PIN E13   IOSTANDARD DIFF_SSTL18_I} [get_ports {CLK_REF2_N}]
+set_property -dict {PACKAGE_PIN E14   IOSTANDARD DIFF_SSTL18_I} [get_ports {CLK_REF2_P}]
 
 # Clock Generator CLK0
-set_property -dict {PACKAGE_PIN AC13  IOSTANDARD LVCMOS18  } [get_ports {CLK_USR_N}]
-set_property -dict {PACKAGE_PIN AC14  IOSTANDARD LVCMOS18  } [get_ports {CLK_USR_P}]
+set_property -dict {PACKAGE_PIN AC13  IOSTANDARD DIFF_SSTL18_I} [get_ports {CLK_USR_N}]
+set_property -dict {PACKAGE_PIN AC14  IOSTANDARD DIFF_SSTL18_I} [get_ports {CLK_USR_P}]
 
 # Display Port
 set_property -dict {PACKAGE_PIN AH6   IOSTANDARD LVCMOS18  } [get_ports {DP_HPD}]
@@ -236,6 +242,26 @@ set_property -dict {PACKAGE_PIN C2    IOSTANDARD LVCMOS18  } [get_ports {FMC_CLK
 set_property -dict {PACKAGE_PIN C3    IOSTANDARD LVCMOS18  } [get_ports {FMC_CLK1_M2C_P}]
 set_property -dict {PACKAGE_PIN F13   IOSTANDARD LVCMOS18  } [get_ports {FMC_GCLK1_M2C_N}]
 set_property -dict {PACKAGE_PIN G13   IOSTANDARD LVCMOS18  } [get_ports {FMC_GCLK1_M2C_P}]
+if {$PL_MGT == "B224"} {
+  # set_property PACKAGE_PIN W3    [get_ports {FMC_DP0_C2M_N}] # GTH
+  # set_property PACKAGE_PIN W4    [get_ports {FMC_DP0_C2M_P}] # GTH
+  # set_property PACKAGE_PIN Y1    [get_ports {FMC_DP0_M2C_N}] # GTH
+  # set_property PACKAGE_PIN Y2    [get_ports {FMC_DP0_M2C_P}] # GTH
+  # set_property PACKAGE_PIN U3    [get_ports {FMC_DP1_C2M_N}] # GTH
+  # set_property PACKAGE_PIN U4    [get_ports {FMC_DP1_C2M_P}] # GTH
+  # set_property PACKAGE_PIN V1    [get_ports {FMC_DP1_M2C_N}] # GTH
+  # set_property PACKAGE_PIN V2    [get_ports {FMC_DP1_M2C_P}] # GTH
+  # set_property PACKAGE_PIN R3    [get_ports {FMC_DP2_C2M_N}] # GTH
+  # set_property PACKAGE_PIN R4    [get_ports {FMC_DP2_C2M_P}] # GTH
+  # set_property PACKAGE_PIN T1    [get_ports {FMC_DP2_M2C_N}] # GTH
+  # set_property PACKAGE_PIN T2    [get_ports {FMC_DP2_M2C_P}] # GTH
+  # set_property PACKAGE_PIN N3    [get_ports {FMC_DP3_C2M_N}] # GTH
+  # set_property PACKAGE_PIN N4    [get_ports {FMC_DP3_C2M_P}] # GTH
+  # set_property PACKAGE_PIN P1    [get_ports {FMC_DP3_M2C_N}] # GTH
+  # set_property PACKAGE_PIN P2    [get_ports {FMC_DP3_M2C_P}] # GTH
+  # set_property PACKAGE_PIN V5    [get_ports {FMC_GCLK0_M2C_N}] # GTH
+  # set_property PACKAGE_PIN V6    [get_ports {FMC_GCLK0_M2C_P}] # GTH
+}
 
 # HDMI
 set_property -dict {PACKAGE_PIN AE10  IOSTANDARD LVCMOS18  } [get_ports {HDMI_HPD}]
@@ -280,26 +306,6 @@ set_property -dict {PACKAGE_PIN AD12  IOSTANDARD LVCMOS18  } [get_ports {IO4_D7_
 # LED
 set_property -dict {PACKAGE_PIN H2    IOSTANDARD LVCMOS18  } [get_ports {LED2_PL_N}]
 set_property -dict {PACKAGE_PIN E7    IOSTANDARD LVCMOS18  } [get_ports {LED3_PL_N}]
-
-# MIPI0
-set_property -dict {PACKAGE_PIN AE8   IOSTANDARD LVCMOS18  } [get_ports {MIPI0_D0_N}]
-set_property -dict {PACKAGE_PIN AE9   IOSTANDARD LVCMOS18  } [get_ports {MIPI0_D0_P}]
-set_property -dict {PACKAGE_PIN AC8   IOSTANDARD LVCMOS18  } [get_ports {MIPI0_D1_N}]
-set_property -dict {PACKAGE_PIN AB8   IOSTANDARD LVCMOS18  } [get_ports {MIPI0_D1_P}]
-set_property -dict {PACKAGE_PIN AD9   IOSTANDARD LVCMOS18  } [get_ports {MIPI0_CLK_D0LP_N}]
-set_property -dict {PACKAGE_PIN AC9   IOSTANDARD LVCMOS18  } [get_ports {MIPI0_CLK_D0LP_P}]
-set_property -dict {PACKAGE_PIN AF6   IOSTANDARD LVCMOS18  } [get_ports {MIPI0_CLK_N}]
-set_property -dict {PACKAGE_PIN AF7   IOSTANDARD LVCMOS18  } [get_ports {MIPI0_CLK_P}]
-
-# MIPI1
-set_property -dict {PACKAGE_PIN AC7   IOSTANDARD LVCMOS18  } [get_ports {MIPI1_D0_N}]
-set_property -dict {PACKAGE_PIN AB7   IOSTANDARD LVCMOS18  } [get_ports {MIPI1_D0_P}]
-set_property -dict {PACKAGE_PIN AC6   IOSTANDARD LVCMOS18  } [get_ports {MIPI1_D1_N}]
-set_property -dict {PACKAGE_PIN AB6   IOSTANDARD LVCMOS18  } [get_ports {MIPI1_D1_P}]
-set_property -dict {PACKAGE_PIN AE7   IOSTANDARD LVCMOS18  } [get_ports {MIPI1_CLK_D0LP_N}]
-set_property -dict {PACKAGE_PIN AD7   IOSTANDARD LVCMOS18  } [get_ports {MIPI1_CLK_D0LP_P}]
-set_property -dict {PACKAGE_PIN AF5   IOSTANDARD LVCMOS18  } [get_ports {MIPI1_CLK_N}]
-set_property -dict {PACKAGE_PIN AE5   IOSTANDARD LVCMOS18  } [get_ports {MIPI1_CLK_P}]
 
 # Oscillator 100 MHz
 set_property -dict {PACKAGE_PIN AA10  IOSTANDARD LVCMOS18  } [get_ports {CLK_100_CAL}]
